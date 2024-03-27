@@ -2,16 +2,10 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
 from schema import AdInput
-# from dotenv import load_dotenv
 import os
 
 # Initialize FastAPI app
 app = FastAPI()
-
-
-
-
-# load_dotenv()
 
 openai.api_type     = "azure"
 openai.api_base     = os.getenv("AZURE_OPENAI_ENDPOINT")
@@ -49,8 +43,8 @@ async def generate_ad(input_data: AdInput):
     response = openai.Completion.create(
     engine="anycopychatgpt35",
     prompt=prompt,
-    temperature=1,
-    max_tokens=350,
+    temperature=0.7,
+    max_tokens=1500,
     top_p=1,
     frequency_penalty=0,
     presence_penalty=0,
